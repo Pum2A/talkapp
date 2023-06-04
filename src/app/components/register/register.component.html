@@ -1,0 +1,18 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <label for="">Email</label>
+  <input type="email" placeholder="Enter your email" formControlName="email" [class.invalid]="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched || isSubmitted)">
+  <span *ngIf="registerForm.get('email')?.hasError('required') && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched || isSubmitted )">
+    This field is required
+  </span>
+  <label for="">Username</label>
+  <input type="text" placeholder="Enter your username" formControlName="username" [class.invalid]="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched || isSubmitted )" >
+  <span *ngIf="registerForm.get('username')?.hasError('required') && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched || isSubmitted )">
+    This field is required
+  </span>
+  <label for="">Password</label>
+  <input type="text" placeholder="Enter your password" formControlName="password" [class.invalid]="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched || isSubmitted )">
+  <span *ngIf="registerForm.get('password')?.hasError('required') && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched || isSubmitted )">
+    This field is required
+  </span>
+  <button type="submit">Register</button>
+</form>
