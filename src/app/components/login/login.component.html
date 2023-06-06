@@ -1,1 +1,12 @@
-<p>login works!</p>
+<h2>Logowanie</h2>
+<form (ngSubmit)="login()">
+  <div>
+    <label for="username">Nazwa użytkownika:</label>
+    <input type="text" id="username" name="username" [(ngModel)]="loginForm.username" required>
+  </div>
+  <div>
+    <label for="password">Hasło:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="loginForm.password" required>
+  </div>
+  <button type="submit">Zaloguj się</button>
+</form>
