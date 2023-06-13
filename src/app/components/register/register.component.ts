@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-register',
@@ -15,7 +17,7 @@ export class RegisterComponent {
 
   isSubmitted = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private snackbar: MatSnackBar) {}
 
   onSubmit() {
     console.log(
@@ -38,9 +40,18 @@ export class RegisterComponent {
         console.log(userData.username);
         console.log(userData.password);
         console.log(userData.email);
+        this.snackbar.open('Rejestracja zakończona pomyślnie!', 'Zamknij', {
+          duration: 3000,
+        });
       } else {
         console.log('Brak danych użytkownika w LocalStorage.');
+        this.snackbar.open('Błąd rejestracji!', 'Zamknij', {
+          duration: 3000,
+        });
       }
     }
+
+
   }
+
 }

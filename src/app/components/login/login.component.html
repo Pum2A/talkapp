@@ -5,8 +5,13 @@
     <input type="text" id="username" name="username" [(ngModel)]="loginForm.username" required>
   </div>
   <div>
+    <label for="username">Adres email:</label>
+    <input type="text" id="email" name="email" [(ngModel)]="loginForm.email" required>
+  </div>
+  <div>
     <label for="password">Hasło:</label>
     <input type="password" id="password" name="password" [(ngModel)]="loginForm.password" required>
   </div>
   <button type="submit">Zaloguj się</button>
 </form>
+<button routerLink="/register">Register </button>
