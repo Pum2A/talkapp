@@ -37,7 +37,7 @@ export class LoginComponent {
       const enteredEmail = this.loginForm.email;
       const enteredPassword = this.loginForm.password;
       if (enteredUsername === storedUserData.username && enteredPassword === storedUserData.password && enteredEmail === storedUserData.email) {
-        this.snackbar.open('Rejestracja zakończona pomyślnie!', 'Zamknij', {
+        this.snackbar.open('Logowanie zakończone pomyślnie!', 'Zamknij', {
           duration:2000,
           panelClass: ['success-snackbar']
         });
