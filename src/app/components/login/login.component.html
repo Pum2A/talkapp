@@ -1,17 +1,29 @@
-<h2>Logowanie</h2>
-<form (ngSubmit)="login()">
-  <div>
-    <label for="username">Nazwa użytkownika:</label>
-    <input type="text" id="username" name="username" [(ngModel)]="loginForm.username" required>
+<div class="form-container">
+
+
+  <h2>Logowanie</h2>
+  <div class="circle-container">
+
+    <form (ngSubmit)="login()">
+      <div>
+        <label for="username">Nazwa użytkownika:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="loginForm.username" required>
+      </div>
+      <div>
+        <label for="username">Adres email:</label>
+        <input type="text" id="email" name="email" [(ngModel)]="loginForm.email" required>
+      </div>
+      <div>
+        <label for="password">Hasło:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="loginForm.password" required>
+      </div>
+      <div class="login-container">
+
+        <button type="submit">Zaloguj się</button>
+      </div>
+    </form>
   </div>
-  <div>
-    <label for="username">Adres email:</label>
-    <input type="text" id="email" name="email" [(ngModel)]="loginForm.email" required>
-  </div>
-  <div>
-    <label for="password">Hasło:</label>
-    <input type="password" id="password" name="password" [(ngModel)]="loginForm.password" required>
-  </div>
-  <button type="submit">Zaloguj się</button>
-</form>
-<button routerLink="/register">Register </button>
+</div>
+<div class="button-container">
+  <button routerLink="/register">Register </button>
+</div>

@@ -1,37 +1,41 @@
 
 <div class="form-container">
-  <div class="h1-cont">
+  <!-- <div class="h1-cont">
 
     <h1>ZAREJESTRUJ SIĘ</h1>
-  </div>
+  </div> -->
 
+  <h1>ZAREJESTRUJ SIĘ</h1>
   <div class="circle-container">
 
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <label for="">Email</label>
-        <input type="email" placeholder="Enter your email" formControlName="email" [class.invalid]="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched || isSubmitted)">
+        <input type="email" placeholder="EMAIL" formControlName="email" [class.invalid]="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched || isSubmitted)">
         <span class="invalid-text" *ngIf="registerForm.get('email')?.hasError('required') && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched || isSubmitted )">
           To pole musi zostać wypełnione poprawnie
         </span>
-        <label for="">Username</label>
-        <input type="text" placeholder="Enter your username" formControlName="username" [class.invalid]="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched || isSubmitted )" >
+        <label for="">Nazwa konta</label>
+        <input type="text" placeholder="Nazwa konta" formControlName="username" [class.invalid]="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched || isSubmitted )" >
         <span class="invalid-text" *ngIf="registerForm.get('username')?.hasError('required') && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched || isSubmitted )">
           To pole musi zostać wypełnione poprawnie
         </span>
         <label for="">Password</label>
-        <input type="text" placeholder="Enter your password" formControlName="password" [class.invalid]="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched || isSubmitted )">
+        <input type="text" placeholder="Haslo" formControlName="password" [class.invalid]="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched || isSubmitted )">
         <span class="invalid-text" *ngIf="registerForm.get('password')?.hasError('required') && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched || isSubmitted )">
-          To pole musi zostać wypełnione poprawnie
+          To pole musi zostać wypełnione poprawnie, haslo musi skladac sie z minimum 8 liter.
         </span>
         <div class="register-container">
 
-          <button type="submit">Register</button>
+          <button type="submit">Zarejestruj</button>
         </div>
       </form>
 </div>
 <div class="button-container">
 
-  <button routerLink="/login">Login in</button>
+  <button routerLink="/login">Zaloguj sie</button>
   <button routerLink="/about">O nas</button>
+  <button routerLink="/regulamin">Regulamin</button>
+  <button routerLink="/Tworca">Tworca</button>
+  <button routerLink="/firma">Nasza firma</button>
 </div>
 </div>
