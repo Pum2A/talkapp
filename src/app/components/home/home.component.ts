@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  isClicked = false;
 
+  isClickedProfile(){
+
+    this.isClicked =! this.isClicked
+    console.log('click')
+  }
 }

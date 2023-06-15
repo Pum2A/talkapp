@@ -1,1 +1,62 @@
-<p>home works!</p>
+<div class="background-main">
+<div class="top">
+  <div class="left-site-container">
+
+    <div class="circle-cont">
+
+      <div (click)="isClickedProfile()" class="profile-circle">
+      </div>
+    </div>
+    <div class="profile-menu-container" *ngIf="isClicked">
+      <div class="profile-menu">
+        <p>Informacje o mnie</p>
+        <p>Mój profil</p>
+        <p>Pomoc i wsparcie</p>
+        <p>Ustawienia</p>
+      </div>
+    </div>
+  </div>
+  <div class="main-site-container">
+    <div class="mat-icon-container">
+
+      <mat-icon>home</mat-icon>
+      <mat-icon>settings</mat-icon>
+      <mat-icon>comment</mat-icon>
+      <mat-icon>message</mat-icon>
+      <mat-icon>add_circle</mat-icon>
+    </div>
+  </div>
+  <div class="input-container">
+    <input type="text" placeholder="Wyszukaj">
+    <mat-icon class="search-icon">search</mat-icon>
+  </div>
+
+</div>
+
+<main>
+  <div class="background-left-site-container">
+
+  </div>
+  <div class="background-main-text-container">
+    <div class="main-background-text">
+      <div class="input-text-container">
+        <div class="profile-circle">
+        </div>
+        <input type="text" placeholder="Napisz wiadomość!">
+      </div>
+    </div>
+  </div>
+  <div class="background-right-site-container">
+
+
+  </div>
+</main>
+
+
+
+
+</div>
+
+
+
+
