@@ -42,7 +42,14 @@
       <div class="input-text-container">
         <div class="profile-circle">
         </div>
-        <input type="text" placeholder="Napisz wiadomość!">
+        <form #form="ngForm" (ngSubmit)="postMessage(form)">
+
+          <input type="text" placeholder="Napisz wiadomość!" name="message" [(ngModel)]="message">
+        </form>
+        <div class="posts-container" *ngFor="let p of posts">
+           <img src="" alt=" mat-card-avatar [src]='p?.avatar'">
+
+        </div>
       </div>
     </div>
   </div>

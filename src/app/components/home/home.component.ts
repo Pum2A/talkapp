@@ -1,16 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { PostService } from 'src/app/services/post.service';
+import { UserData } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
   isClicked = false;
 
-  isClickedProfile(){
+  message: any;
+  posts: [] = [];
+  user: UserData;
+  subs: Subscription[] = [];
 
-    this.isClicked =! this.isClicked
-    console.log('click')
+  constructor(
+    private postService: PostService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    this.subs.push(
+      this.postService.getAllPosts().subscribe((posts) => {
+        this.posts = posts;
+      })
+    );
+
+    this.subs.push(
+
+    );
+
+
+  }
+  ngOnDestroy(): void {
+    this.subs.map((s) => s.unsubscribe());
+  }
+  isClickedProfile() {
+    this.isClicked = !this.isClicked;
+    console.log('click');
+  }
+
+  postMessage(form: NgForm) {
+    console.log(form.value);
   }
 }

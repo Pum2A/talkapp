@@ -13,7 +13,7 @@ width: 100%;
 
 }
 .circle-cont{
-  width: 15rem;
+  width: 25rem;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -28,18 +28,24 @@ width: 100%;
   cursor: pointer;
 
 
+
 }
 
 .profile-menu-container{
 
   min-width: 20rem;
   height: 50rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10.7%;
   // margin-left: .5rem;
 
 
 
 }
 .profile-menu{
+
   background-color: #121212;
   height: 50rem;
   width: 20rem;
@@ -79,10 +85,12 @@ width: 100%;
   }
 }
 .left-site-container{
-  min-width: 34rem;
+  min-width: 30rem;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .main-site-container{
   min-width: 120rem;

@@ -1,12 +1,32 @@
+
+.snackbar-style{
+  background-color: #333;
+  color: green;
+}
+.snackbar-error{
+  background-color: red;
+  color: green;
+}
+.mdc-button__label{
+  color: red;
+}
+
+
 .invalid{
   background-color: red;
+  font-weight: 800;
   // border: 20px dashed #fff;
   width: 30rem;
   height: 6rem;
 
 }
+
+.valid{
+  background-color: lime;
+}
 .invalid-text{
   color: crimson;
+  font-weight: 800;
   margin: 10px;
 }
 .form-container{
@@ -16,13 +36,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #040404;
+  background-color: #101010;
 }
 .circle-container{
-  border-bottom: 1px dashed rgb(53 172 53);
-  border-top: 1px dashed rgb(53 172 53);
-  // padding: 25px;
-  // margin: 3px;
   height: 80%;
   width: 95%;
   display: flex;
@@ -30,7 +46,6 @@
   align-items: center;
   flex-direction: column;
   // border-radius: 5%;
-
 }
 
 form{
@@ -38,14 +53,6 @@ form{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-h1{
-  font-size: 4rem;
-  // margin: 35px;
-  color: #fff;
-  font-weight: 800;
-  letter-spacing: 3px;
 }
 
 input{
@@ -56,35 +63,42 @@ input{
   outline: none;
   font-size: 2rem;
   border-radius: 2rem;
+
   box-shadow: 0px 0px 4px #fff;
 
-  background-color: rgb(45 100 45);
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Poppins', sans-serif;
+
 
   // border-bottom-right-radius: 55%;
 
 }
 input::placeholder{
 
-  color: #fff;
+  color: #999999;
+  font-weight: 800;
   // font-weight: 800;
   font-size: 2rem;
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Poppins', sans-serif;
+
   // color: #fff;
   text-align: center;
   text-transform: uppercase;
 }
 label{
-  color: #fff;
-  border-bottom: 1px dashed #fff;
-  width: 50%;
-  height: 4rem;
+  color: #e9e7e7;
+  font-weight: 600;
+  background-color: #222222;
+  border-radius: 2rem;
+  height: 6rem;
+  min-width: 30rem;
+  letter-spacing: 1px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
   margin: 2.5rem;
   text-transform: uppercase;
+  border: 1px solid #d8d8d8;
 
 
 }
@@ -95,25 +109,19 @@ button{
   border-radius: 2rem;
 }
 
-.button-container{
-  position: absolute;
-  // top: 15%;
-  left: 4%;
 
-}
 .button-container button{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 45px 0px;
+  margin: 25px 0px;
   width: 20rem;
   height: 8rem;
   background-color: #060606;
-  font-family: 'Heebo', sans-serif;
   border: none;
   // border-left: 10px dashed #fff;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-transform: uppercase;
   color: #fff;
   box-shadow: 0px 0px 4px #fff;
@@ -136,7 +144,10 @@ button{
   background-color: #060606;
   color: #fff;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+
 
 }
