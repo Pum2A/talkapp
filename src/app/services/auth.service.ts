@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  deafultAvatar = 'https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png';
   private userData: Observable<firebase.User>
   private currentUser: UserData;
   private currentUser$ = new BehaviorSubject<UserData>(null);
@@ -44,17 +45,21 @@ export class AuthService {
     password:string,
     firstName: string,
     lastName: string,
-    avatar = 'https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png'): void{
+    avatar): void{
 
       this.afAuth.createUserWithEmailAndPassword(email, password)
       .then(res => {
         if (res) {
+
+          if(avatar === undefined || avatar === ''){
+            avatar = this.deafultAvatar
+          }
           this.afs.collection('users').doc(res.user.uid)
           .set({
             firstName,
             lastName,
             email,
-            avatar
+            avatar,
           }).then(() => {
             this.afs.collection<UserData>('users')
             .doc<UserData>(res.user.uid)

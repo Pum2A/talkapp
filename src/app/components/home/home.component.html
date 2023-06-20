@@ -43,13 +43,28 @@
         <div class="profile-circle">
         </div>
         <form #form="ngForm" (ngSubmit)="postMessage(form)">
-
+          <h2>Wyślij wiadomość na oś czasu!</h2>
           <input type="text" placeholder="Napisz wiadomość!" name="message" [(ngModel)]="message">
+          <!-- <button type="submit"></button> -->
         </form>
+        <div class="post-container-max">
+        </div>
         <div class="posts-container" *ngFor="let p of posts">
-           <img src="" alt=" mat-card-avatar [src]='p?.avatar'">
+          <img class="avatar" [src]="p?.avatar" alt="Avatar">
+          <div class="firstname-lastname">
+
+            <div>{{ p?.firstName }}</div>
+            <div>{{ p?.lastName }}</div>
+          </div>
+          <div class="content-text-post">
+
+            <div>{{ p?.message }}</div>
+          </div>
+
+
 
         </div>
+
       </div>
     </div>
   </div>

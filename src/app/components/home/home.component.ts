@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   isClicked = false;
 
   message: any;
-  posts: [] = [];
+  posts: { avatar: string, firstName: string, lastName: string, message: string }[] = [];
   user: UserData;
   subs: Subscription[] = [];
 
@@ -31,7 +31,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
 
     this.subs.push(
-
+      this.authService.CurrentUser().subscribe(user => {
+        this.user = user;
+      })
     );
 
 
@@ -45,6 +47,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   postMessage(form: NgForm) {
-    console.log(form.value);
+    const {message} = form.value;
+
+    this.postService.postMessage(message, `${this.user.firstName} ${this.user.lastName}`,
+    {
+      avatar: this.user.avatar,
+      lastName: this.user.lastName,
+      firstName: this.user.firstName,
+    }
+
+
+    );
+
+
+    form.resetForm();
   }
+
 }

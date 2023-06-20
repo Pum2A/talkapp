@@ -4,26 +4,15 @@
   <h2>Logowanie</h2>
   <div class="circle-container">
 
-    <form (ngSubmit)="login()">
-      <div>
-        <label for="username">Nazwa użytkownika:</label>
-        <input type="text" id="username" name="username" [(ngModel)]="loginForm.username" required>
-      </div>
-      <div>
-        <label for="username">Adres email:</label>
-        <input type="text" id="email" name="email" [(ngModel)]="loginForm.email" required>
-      </div>
-      <div>
-        <label for="password">Hasło:</label>
-        <input type="password" id="password" name="password" [(ngModel)]="loginForm.password" required>
-      </div>
-      <div class="login-container">
+    <form #form="ngForm" (ngSubmit)="loginn(form)">
+      <input type="text" placeholder="Email" name="email" ngModel required>
+      <input type="text" placeholder="Hasło" name="password" ngModel required>
 
-        <button type="submit">Zaloguj się</button>
+
+<button type="submit" [disabled]="form.invalid || form.pending">Zaloguj się</button>
         <div class="button-container">
-          <button routerLink="/register">Zarejestruj się </button>
+          <button (click)="openRegister()">Zarejestruj się </button>
         </div>
-      </div>
     </form>
   </div>
 </div>

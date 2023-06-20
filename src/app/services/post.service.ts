@@ -15,7 +15,8 @@ export class PostService {
 
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
 
-    this.afAuth.authState.subscribe(user => this.CurrenUser != user);
+    this.afAuth.authState.subscribe(user => this.CurrenUser = user);
+
    }
 
    getAllPosts(): Observable<any> {
