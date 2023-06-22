@@ -135,6 +135,82 @@ button{
   margin-top: 25px;
 
 }
+element.style{
+  background-color: black !important;
+  width: 0;
+  height: 0;
+}
+
+#cdk-overlay-0{
+  background-color: black !important;
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header h3{
+  color: #fff;
+  font-size: 2rem;
+  font-family: 'Poppins', sans-serif !important;
+
+}
+
+section{
+ background-color: #060606 ;
+min-height: 480px;
+display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // width: 480px;
+}
+.user-name, .email-password{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin:5px;
+}
+.user-name{
+  gap:10px;
+}
+.email-password{
+  gap: 10px;
+}
+input{
+  height: 3rem;
+  width: 25rem;
+  background-color: #131212;
+  outline: none;
+  border: 1px solid #fff;
+  margin: 10px;
+  color: #fff;
+}
+input:focus{
+  color: #fff;
+}
+
+.submit-button{
+  width: 350px;
+  background-color: #131212;
+  outline: none;
+  border: 1px solid #fff;
+  margin: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif !important;
+  // font-weight: 800;
+  font-size: 2rem;
+  text-transform: uppercase;
+
+}
 
 
 .register-container button{
