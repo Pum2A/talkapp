@@ -42,9 +42,9 @@
       <div class="input-text-container">
         <div class="profile-circle">
         </div>
+        <button (click)="logout()">Wyloguj</button>
         <form #form="ngForm" (ngSubmit)="postMessage(form)">
           <h2>Wyślij wiadomość na oś czasu!</h2>
-          <button (click)="logout()">Wyloguj</button>
 
           <input type="text" placeholder="Napisz wiadomość!" name="message" [(ngModel)]="message">
           <!-- <button type="submit"></button> -->
