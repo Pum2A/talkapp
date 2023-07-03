@@ -1,18 +1,37 @@
-<div class="form-container">
+<div class="space">
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
 
 
-  <h2>Logowanie</h2>
-  <div class="circle-container">
+  <div class="form-container">
+    <div class="h2-container">
 
-    <form #form="ngForm" (ngSubmit)="loginn(form)">
-      <input type="text" placeholder="Email" name="email" ngModel required>
-      <input type="text" placeholder="Hasło" name="password" ngModel required>
+      <h2>Logowanie</h2>
+    </div>
+    <div class="form-container-text">
 
-
-<button type="submit" [disabled]="form.invalid || form.pending">Zaloguj się</button>
-        <div class="button-container">
-          <button (click)="openRegister()">Zarejestruj się </button>
+      <form #form="ngForm" (ngSubmit)="loginn(form)">
+        <div class="input-container">
+          <input type="text" placeholder="Email" name="email" ngModel required />
+          <input
+          type="text"
+          placeholder="Hasło"
+          name="password"
+          ngModel
+          required
+          />
         </div>
-    </form>
+
+        <div class="button-container">
+          <button type="submit" [disabled]="form.invalid || form.pending" class="login-button">
+            Zaloguj się
+          </button>
+          <button (click)="openRegister()">Zarejestruj się</button>
+        </div>
+      </form>
+    </div>
   </div>
+
 </div>
