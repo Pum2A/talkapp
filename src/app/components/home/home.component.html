@@ -4,31 +4,40 @@
 
     <div class="circle-cont">
 
-      <div (click)="isClickedProfile()" class="profile-circle">
-      </div>
+      <span (click)="isClickedProfile()" id="menu" class="material-symbols-outlined">
+        menu
+        </span >
     </div>
     <div class="profile-menu-container" *ngIf="isClicked">
       <div class="profile-menu">
-        <p>Informacje o mnie</p>
-        <p>Mój profil</p>
-        <p>Pomoc i wsparcie</p>
+        <mat-icon>home</mat-icon>
+        <p>Strona główna</p>
+        <mat-icon>settings</mat-icon>
         <p>Ustawienia</p>
+        <mat-icon>comment</mat-icon>
+        <p>Skomentuj</p>
+        <mat-icon>message</mat-icon>
+        <p>Wiadomości</p>
+        <mat-icon>add_circle</mat-icon>
+        <p>Dodaj artykuł</p>
+
+
       </div>
     </div>
   </div>
   <div class="main-site-container">
-    <div class="mat-icon-container">
 
-      <mat-icon>home</mat-icon>
-      <mat-icon>settings</mat-icon>
-      <mat-icon>comment</mat-icon>
-      <mat-icon>message</mat-icon>
-      <mat-icon>add_circle</mat-icon>
+    <div class="input-container">
+
+        <!-- <mat-icon class="search-icon">search</mat-icon> -->
+      <input type="text" placeholder="Szukaj">
     </div>
   </div>
-  <div class="input-container">
-    <input type="text" placeholder="Wyszukaj">
-    <mat-icon class="search-icon">search</mat-icon>
+  <div class="logout-container">
+    <mat-icon>notifications</mat-icon>
+    <span (click)="logout()" class="material-symbols-outlined">
+      logout
+      </span>
   </div>
 
 </div>
@@ -42,27 +51,39 @@
       <div class="input-text-container">
         <div class="profile-circle">
         </div>
-        <button (click)="logout()">Wyloguj</button>
-        <form #form="ngForm" (ngSubmit)="postMessage(form)">
-          <h2>Wyślij wiadomość na oś czasu!</h2>
+        <form #form="ngForm" (ngSubmit)="postMessage(form)" >
+          <div class="text-message-container">
 
-          <input type="text" placeholder="Napisz wiadomość!" name="message" [(ngModel)]="message">
+
+            <div class="textarea-container">
+
+                <img class="avatar" [src]="deafultAvatar" alt="Avatar">
+
+              <textarea name="" id="" cols="30" rows="10" placeholder="Napisz wiadomość!" name="message" [(ngModel)]="message" required></textarea>
+            </div>
+            <div class="submit-container">
+
+              <input type="submit" placeholder="Wyślij" [(ngModel)]="message" class="submit-button-message">
+            </div>
+          </div>
           <!-- <button type="submit"></button> -->
         </form>
         <div class="post-container-max">
         </div>
         <div class="posts-container" *ngFor="let p of posts">
-          <img class="avatar" [src]="p?.avatar" alt="Avatar">
           <div class="firstname-lastname">
 
             <div>{{ p?.firstName }}</div>
             <div>{{ p?.lastName }}</div>
           </div>
-          <div class="content-text-post">
+          <div class="content-text-container">
 
             <div>{{ p?.message }}</div>
-            <button (click)="deletePost(p?.id)">Usuń post</button>
 
+          </div>
+          <div class="delete-post-container">
+
+            <button (click)="deletePost(p?.id)">Usuń post</button>
           </div>
 
 
@@ -73,7 +94,9 @@
     </div>
   </div>
   <div class="background-right-site-container">
+    <div class="friends-container">
 
+    </div>
 
   </div>
 </main>

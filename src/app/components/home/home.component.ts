@@ -13,7 +13,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class HomeComponent implements OnInit, OnDestroy {
 
   isClicked = false;
-
+  deafultAvatar = 'https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png'
   message: string;
   posts: { avatar: string, firstName: string, lastName: string, message: string, id: string }[] = [];
   user: UserData;

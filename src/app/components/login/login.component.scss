@@ -9,6 +9,17 @@
 .mdc-button__label{
   color: red;
 }
+label{
+  color: #fff;
+  font-size: 3rem;
+  font-family: 'Poppins', sans-serif;
+  margin: 15px;
+  text-shadow: 0px 0px 2px #fff;
+  font-weight: 700;
+  letter-spacing: 3px;
+
+
+}
 
 h2{
   // margin-top: 10rem;
@@ -18,7 +29,6 @@ h2{
   font-weight: 800;
   text-transform: uppercase;
 
-  background-color: #222222;
   // border-bottom: 3px solid #fff;
   padding: 30px;
   width: 100%;
@@ -66,12 +76,14 @@ input{
   width: 30rem;
   height: 6rem;
   border: none;
-  border: 1px solid #fff;
+  background-color: #000;
+  color: #fff;
   outline: none;
   margin: 15px 15px;
   font-size: 2rem;
   border-radius: .1rem;
   box-shadow: 0px 0px 4px #000;
+  border-bottom: 1px solid #fff;
 
   font-family: 'Poppins', sans-serif;
 
@@ -81,7 +93,7 @@ input{
 }
 input::placeholder{
 
-  color: #000;
+  color: #fff;
   font-weight: 800;
   font-size: 2rem;
   font-family: 'Poppins', sans-serif;
@@ -90,25 +102,13 @@ input::placeholder{
   text-align: center;
   text-transform: uppercase;
 }
-label{
-  color: #e9e7e7;
-  font-weight: 600;
-  background-color: #222222;
-  border-radius: 2rem;
-  height: 6rem;
-  min-width: 30rem;
-
-  letter-spacing: 1px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  margin: 2.5rem 0rem;
-  text-transform: uppercase;
-  border: 1px solid #d8d8d8;
-
-
+input:focus{
+  color: #fff;
 }
+input::after:focus{
+  color: #fff;
+}
+
 
 button{
   width: 40rem;
