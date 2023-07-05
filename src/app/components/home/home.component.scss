@@ -519,4 +519,35 @@ cursor: pointer;
 
     display: none;
   }
+
+  .main-site-container{
+    min-width: 8rem;
+    // background-color: red;
+  }
+
+  .logout-container mat-icon{
+    color: #fff;
+    font-size: 2.5rem;
+  }
+
+  .logout-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-color: #252525;
+    min-width: 35%;
+    height: 100%;
+  }
+  .logout-container span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem ;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: #252525;
+    cursor: pointer;
+    color: #fff;
+  }
+
 }
