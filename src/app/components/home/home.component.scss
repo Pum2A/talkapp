@@ -10,7 +10,7 @@ max-width: 100%;
   min-width: 100%;
   height: 10rem;
   display: flex;
-  // display: flex;
+  display: flex;
   border-bottom: 1px solid #444444;
   z-index: 1000;
 
@@ -96,11 +96,14 @@ max-width: 100%;
 
 }
 .left-site-container{
-  min-width: 10rem;
+  min-width: 5rem;
+  // max-width: 5rem;
   height: 100%;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
+  margin-left: 3rem;
   align-items: center;
+  flex: 1;
 }
 .main-site-container{
   min-width: 36rem;
@@ -432,7 +435,7 @@ cursor: pointer;
 }
 
 
-@media only screen and (max-width: 320px){
+@media only screen and (min-width: 320px){
 .top{
   width: 100%;
   height: 6rem;
@@ -530,14 +533,7 @@ cursor: pointer;
     font-size: 2.5rem;
   }
 
-  .logout-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // background-color: #252525;
-    min-width: 35%;
-    height: 100%;
-  }
+
   .logout-container span{
     display: flex;
     justify-content: center;
@@ -551,3 +547,307 @@ cursor: pointer;
   }
 
 }
+
+
+@media only screen and (min-width: 375px){
+  .top{
+    width: 100%;
+    height: 6rem;
+  }
+
+  .main-background-text{
+    min-width: 29.5rem;
+
+
+  }
+  .textarea-container{
+    width: 27.5rem;
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+  }
+
+  .text-message-container textarea{
+    min-width: 26rem;
+    max-width: 26rem;
+    min-height: 10rem;
+    max-height: 10rem;
+    resize: none;
+    overflow: hidden;
+    color: #fff;
+    margin: 5px;
+    border-radius: .5rem;
+    background-color: #141414;
+    border: none;
+    }
+
+
+    .text-message-container{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      // margin: 10px;
+
+    }
+
+
+    .input-text-container{
+      width: 100%;
+      height: 26.4rem;
+      display: flex;
+      // justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 1px solid #333333;
+    }
+
+    .submit-container{
+      width: 100%;
+      height: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    .firstname-lastname{
+      margin: 15px 15px;
+      width: 20%;
+    }
+
+    .content-text-container{
+      max-width: 33%;
+      min-width: 33%;
+      margin: 5px 5px;
+
+    }
+
+    .delete-post-container button{
+      min-width: 8rem;
+      max-width: 8rem;
+      margin: 5px 5px;
+
+    }
+
+    .input-container{
+
+      display: none;
+    }
+
+
+
+    .logout-container mat-icon{
+      color: #fff;
+      font-size: 2.5rem;
+    }
+
+
+
+  }
+
+
+  @media only screen and (min-width: 425px){
+    .top{
+      width: 100%;
+      height: 6rem;
+    }
+
+    .main-background-text{
+      min-width: 35.5rem;
+
+
+    }
+    .textarea-container{
+      width: 27.5rem;
+      display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .text-message-container textarea{
+      min-width: 30rem;
+      max-width: 30rem;
+      min-height: 10rem;
+      max-height: 10rem;
+      resize: none;
+      overflow: hidden;
+      color: #fff;
+      margin: 5px;
+      border-radius: .5rem;
+      background-color: #141414;
+      border: none;
+      }
+
+
+      .text-message-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        // margin: 10px;
+
+      }
+
+
+      .input-text-container{
+        width: 100%;
+        height: 26.4rem;
+        display: flex;
+        // justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        border-bottom: 1px solid #333333;
+      }
+
+      .submit-container{
+        width: 100%;
+        height: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+
+      .firstname-lastname{
+        margin: 15px 15px;
+        width: 20%;
+      }
+
+      .content-text-container{
+        max-width: 40%;
+        min-width: 40%;
+        margin: 5px 5px;
+
+      }
+
+      .delete-post-container button{
+        min-width: 8rem;
+        max-width: 8rem;
+        margin: 5px 5px;
+
+      }
+
+      .input-container{
+
+        display: none;
+      }
+
+
+
+      .logout-container mat-icon{
+        color: #fff;
+        font-size: 2.5rem;
+      }
+
+    }
+
+
+    @media only screen and (min-width: 768px){
+      .top{
+        width: 100%;
+        height: 6rem;
+      }
+
+      .main-background-text{
+        min-width: 55.5rem;
+
+
+      }
+      .textarea-container{
+        width: 27.5rem;
+        display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+      }
+
+      .text-message-container textarea{
+        min-width: 45rem;
+        max-width: 45rem;
+        min-height: 10rem;
+        max-height: 10rem;
+        resize: none;
+        overflow: hidden;
+        color: #fff;
+        margin: 5px;
+        border-radius: .5rem;
+        background-color: #141414;
+        border: none;
+        }
+
+
+        .text-message-container{
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          // margin: 10px;
+
+        }
+
+
+        .input-text-container{
+          width: 100%;
+          height: 26.4rem;
+          display: flex;
+          // justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          border-bottom: 1px solid #333333;
+        }
+
+        .submit-container{
+          width: 100%;
+          height: 5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+
+        .firstname-lastname{
+          margin: 15px 15px;
+          min-width: 15%;
+        }
+
+        .content-text-container{
+          max-width: 51%;
+          min-width: 51%;
+          margin: 5px 5px;
+
+        }
+
+        .delete-post-container button{
+          min-width: 8rem;
+          max-width: 8rem;
+          margin: 5px 25px;
+
+        }
+
+        .input-container{
+
+          display: none;
+        }
+
+
+
+        .logout-container mat-icon{
+          color: #fff;
+          font-size: 2.5rem;
+        }
+
+
+
+
+
+      }
+
+
+
+
