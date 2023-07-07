@@ -19,7 +19,11 @@ body {
 
 
    }
-
+   ul, li, a, p{
+    list-style: none;
+    margin: 0 !important;
+  padding: 0 !important;
+   }
 
 .success-snackbar {
   --mdc-snackbar-container-color: green !important;

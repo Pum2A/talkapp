@@ -18,6 +18,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import { AddFriendComponent } from './components/add-friend/add-friend.component';
+import { SearchFriendComponent } from './components/search-friend/search-friend.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AddFriendComponent,
+    SearchFriendComponent
   ],
   imports: [
     BrowserModule,

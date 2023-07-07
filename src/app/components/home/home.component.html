@@ -22,6 +22,10 @@
         <p>Dodaj artykuł</p>
 
 
+
+
+
+
       </div>
     </div>
   </div>
@@ -44,6 +48,42 @@
 
 <main>
   <div class="background-left-site-container">
+
+
+
+   <!-- Reszta kodu -->
+
+<form (submit)="searchFriends(searchForm)" #searchForm="ngForm">
+  <div>
+    <label for="firstName">Imię:</label>
+    <input type="text" id="firstName" name="firstName" ngModel required>
+  </div>
+  <div>
+    <label for="lastName">Nazwisko:</label>
+    <input type="text" id="lastName" name="lastName" ngModel required>
+  </div>
+  <button type="submit">Wyszukaj</button>
+</form>
+
+<!-- Reszta kodu -->
+
+<div *ngIf="searchFormSubmitted && searchResultsFound">
+  <h3>Wyniki wyszukiwania:</h3>
+  <ul>
+    <li *ngFor="let friend of searchResults">
+      {{ friend.firstName }} {{ friend.lastName }}
+      <button (click)="addFriend(friend)">Dodaj do znajomych</button>
+    </li>
+  </ul>
+</div>
+<div *ngIf="searchFormSubmitted && !searchResultsFound">
+  Brak wyników wyszukiwania.
+</div>
+
+<!-- Reszta kodu -->
+
+
+
 
   </div>
   <div class="background-main-text-container">
@@ -95,7 +135,36 @@
   </div>
   <div class="background-right-site-container">
     <div class="friends-container">
+      <div class="h3-friends-container">
 
+        <h3>Lista znajomych</h3>
+      </div>
+      <div class="friends-list-container">
+        <div class="person">
+          <ul>
+            <li>
+              <p>Norbert Gierczak</p>
+            </li>
+          </ul>
+          <div *ngIf="friendData">
+            <h2>{{ friendData.name }}</h2>
+            <p>{{ friendData.email }}</p>
+            <!-- Dodaj inne pola, takie jak zdjęcie znajomego itp. -->
+          </div>
+
+          <div *ngIf="!friendData">
+            <p>Brak danych znajomego.</p>
+          </div>
+          <!-- <form (ngSubmit)="addFriend(friendForm)" #friendForm="ngForm">
+            <input type="text" name="name" [(ngModel)]="friendData.name" placeholder="Imię znajomego" required>
+            <input type="email" name="email" [(ngModel)]="friendData.email" placeholder="Email znajomego" required>
+            <button type="submit">Dodaj znajomego</button>
+          </form> -->
+
+          <!-- <button (click)="addFriend()">Dodaj znajomego</button> -->
+
+        </div>
+      </div>
     </div>
 
   </div>

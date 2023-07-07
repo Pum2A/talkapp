@@ -4,6 +4,10 @@ import { Subscription } from 'rxjs';
 import { AuthService, UserData } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { FriendDataService } from 'src/app/services/friend-data.service';
+import { AddFriendComponent } from '../add-friend/add-friend.component';
+import { AddFriendService } from 'src/app/services/add-friend.service';
+import { SearchFriendsService } from 'src/app/services/search-friend.service';
 
 @Component({
   selector: 'app-home',
@@ -18,12 +22,59 @@ export class HomeComponent implements OnInit, OnDestroy {
   posts: { avatar: string, firstName: string, lastName: string, message: string, id: string }[] = [];
   user: UserData;
   subs: Subscription[] = [];
+  friendData: { name: string, email: string, lastName: string } = { name: '', email: '', lastName: '' };
+  searchQuery: string;
+  searchResults: UserData[] = [];
+  searchResultsFound = false;
+  searchFormSubmitted = false;
+
+
+
+
+  firstName: string;
+  lastName: string;
+
+
+
 
   constructor(
     private postService: PostService,
     private authService: AuthService,
     private firestore: AngularFirestore,
+    private friendDataService: FriendDataService,
+    private addFriendService: AddFriendService,
+    private searchFriendsService: SearchFriendsService,
   ) {}
+
+
+
+
+
+
+
+
+
+
+  addFriend(friend: UserData) {
+    if (friend && friend.id) {
+      const userId = ''; // Zastąp to odpowiednim id użytkownika
+      const friendId = friend.id;
+
+      this.addFriendService.addFriend(userId, friendId, this.lastName, this.firstName)
+        .then(() => {
+          console.log('Znajomy został pomyślnie dodany.');
+          // Tutaj możesz wykonać inne działania po dodaniu znajomego, np. wyświetlić komunikat dla użytkownika
+        })
+        .catch(error => {
+          console.error('Wystąpił błąd podczas dodawania znajomego:', error);
+          // Tutaj możesz obsłużyć błąd, np. wyświetlić komunikat dla użytkownika informujący o niepowodzeniu
+        });
+    }
+  }
+
+
+
+
 
 
   logout() {
@@ -42,6 +93,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.user = user;
       })
     );
+
+    this.friendData = this.friendDataService.getFriendData();
+
+
+
   }
 
   ngOnDestroy(): void {
@@ -99,4 +155,25 @@ export class HomeComponent implements OnInit, OnDestroy {
       console.error('Użytkownik nie jest zalogowany!');
     }
   }
+
+  searchFriends(form: NgForm) {
+    if (form.valid) {
+      const firstName = form.value.firstName;
+      const lastName = form.value.lastName;
+
+      this.searchFriendsService.searchFriends(firstName, lastName)
+        .subscribe(results => {
+          this.searchResults = results;
+          this.searchResultsFound = this.searchResults.length > 0;
+        });
+
+      this.searchFormSubmitted = true; // Ustawienie flagi wysłania formularza
+    }
+  }
+
+
+
 }
+
+
+
