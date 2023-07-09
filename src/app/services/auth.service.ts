@@ -55,7 +55,11 @@ export class AuthService {
             firstName,
             lastName,
             email,
-            avatar
+            avatar,
+            addedToFriends: false
+
+
+
           };
 
           this.afs.collection('users').doc(res.user.uid)
@@ -111,4 +115,6 @@ export interface UserData {
   lastName: string;
   avatar: string;
   email: string;
+  addedToFriends: boolean;
+
 }

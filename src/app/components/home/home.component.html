@@ -1,180 +1,154 @@
 <div class="background-main">
-<div class="top">
-  <div class="left-site-container">
-
-    <div class="circle-cont">
-
-      <span (click)="isClickedProfile()" id="menu" class="material-symbols-outlined">
-        menu
-        </span >
-    </div>
-    <div class="profile-menu-container" *ngIf="isClicked">
-      <div class="profile-menu">
-        <mat-icon>home</mat-icon>
-        <p>Strona główna</p>
-        <mat-icon>settings</mat-icon>
-        <p>Ustawienia</p>
-        <mat-icon>comment</mat-icon>
-        <p>Skomentuj</p>
-        <mat-icon>message</mat-icon>
-        <p>Wiadomości</p>
-        <mat-icon>add_circle</mat-icon>
-        <p>Dodaj artykuł</p>
-
-
-
-
-
-
+  <div class="top">
+    <div class="left-site-container">
+      <div class="circle-cont">
+        <span
+          (click)="isClickedProfile()"
+          id="menu"
+          class="material-symbols-outlined"
+        >
+          menu
+        </span>
+      </div>
+      <div class="profile-menu-container" *ngIf="isClicked">
+        <div class="profile-menu">
+          <mat-icon>home</mat-icon>
+          <p>Strona główna</p>
+          <mat-icon>settings</mat-icon>
+          <p>Ustawienia</p>
+          <mat-icon>comment</mat-icon>
+          <p>Skomentuj</p>
+          <mat-icon>message</mat-icon>
+          <p>Wiadomości</p>
+          <mat-icon>add_circle</mat-icon>
+          <p>Dodaj artykuł</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="main-site-container">
-
-    <div class="input-container">
-
+    <div class="main-site-container">
+      <div class="input-container">
         <!-- <mat-icon class="search-icon">search</mat-icon> -->
-      <input type="text" placeholder="Szukaj">
+        <input type="text" placeholder="Szukaj" />
+      </div>
+    </div>
+    <div class="logout-container">
+      <mat-icon>notifications</mat-icon>
+      <span (click)="logout()" class="material-symbols-outlined"> logout </span>
     </div>
   </div>
-  <div class="logout-container">
-    <mat-icon>notifications</mat-icon>
-    <span (click)="logout()" class="material-symbols-outlined">
-      logout
-      </span>
-  </div>
 
-</div>
-
-<main>
-  <div class="background-left-site-container">
-
-
-
-   <!-- Reszta kodu -->
-
-<form (submit)="searchFriends(searchForm)" #searchForm="ngForm">
-  <div>
-    <label for="firstName">Imię:</label>
-    <input type="text" id="firstName" name="firstName" ngModel required>
-  </div>
-  <div>
-    <label for="lastName">Nazwisko:</label>
-    <input type="text" id="lastName" name="lastName" ngModel required>
-  </div>
-  <button type="submit">Wyszukaj</button>
-</form>
-
-<!-- Reszta kodu -->
-
-<div *ngIf="searchFormSubmitted && searchResultsFound">
-  <h3>Wyniki wyszukiwania:</h3>
-  <ul>
-    <li *ngFor="let friend of searchResults">
-      {{ friend.firstName }} {{ friend.lastName }}
-      <button (click)="addFriend(friend)">Dodaj do znajomych</button>
-    </li>
-  </ul>
-</div>
-<div *ngIf="searchFormSubmitted && !searchResultsFound">
-  Brak wyników wyszukiwania.
-</div>
-
-<!-- Reszta kodu -->
-
-
-
-
-  </div>
-  <div class="background-main-text-container">
-    <div class="main-background-text">
-      <div class="input-text-container">
-        <div class="profile-circle">
+  <main>
+    <div class="background-left-site-container">
+      <form (submit)="searchFriends(searchForm)" #searchForm="ngForm">
+        <div>
+          <label for="firstName">Imię:</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            [(ngModel)]="friendData.name"
+            required
+          />
         </div>
-        <form #form="ngForm" (ngSubmit)="postMessage(form)" >
-          <div class="text-message-container">
+        <div>
+          <label for="lastName">Nazwisko:</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            [(ngModel)]="friendData.lastName"
+            required
+          />
+        </div>
+        <button type="submit">Wyszukaj</button>
+      </form>
 
+      <div *ngIf="searchResultsFound; else noResults">
+        <h3>Wyniki wyszukiwania:</h3>
+        <ul>
+          <li *ngFor="let result of searchResults">
+            {{ result.firstName }} {{ result.lastName }}
+            <button
+              (click)="addFriend(result)"
+              [disabled]="result.addedToFriends"
+            >
+              Dodaj do znajomych
+            </button>
+          </li>
+        </ul>
+      </div>
+      <ng-template #noResults>
+        <p>Nie znaleziono takiej osoby.</p>
+      </ng-template>
+    </div>
+    <div class="background-main-text-container">
+      <div class="main-background-text">
+        <div class="input-text-container">
+          <div class="profile-circle"></div>
+          <form #form="ngForm" (ngSubmit)="postMessage(form)">
+            <div class="text-message-container">
+              <div class="textarea-container">
+                <img class="avatar" [src]="defaultAvatar" alt="Avatar" />
 
-            <div class="textarea-container">
-
-                <img class="avatar" [src]="deafultAvatar" alt="Avatar">
-
-              <textarea name="" id="" cols="30" rows="10" placeholder="Napisz wiadomość!" name="message" [(ngModel)]="message" required></textarea>
+                <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                  placeholder="Napisz wiadomość!"
+                  name="message"
+                  [(ngModel)]="message"
+                  required
+                ></textarea>
+              </div>
+              <div class="submit-container">
+                <input
+                  type="submit"
+                  placeholder="Wyślij"
+                  [(ngModel)]="message"
+                  class="submit-button-message"
+                />
+              </div>
             </div>
-            <div class="submit-container">
-
-              <input type="submit" placeholder="Wyślij" [(ngModel)]="message" class="submit-button-message">
+            <!-- <button type="submit"></button> -->
+          </form>
+          <div class="post-container-max"></div>
+          <div class="posts-container" *ngFor="let p of posts">
+            <div class="firstname-lastname">
+              <div>{{ p?.firstName }}</div>
+              <div>{{ p?.lastName }}</div>
+            </div>
+            <div class="content-text-container">
+              <div>{{ p?.message }}</div>
+            </div>
+            <div class="delete-post-container">
+              <button (click)="deletePost(p?.id)">Usuń post</button>
             </div>
           </div>
-          <!-- <button type="submit"></button> -->
-        </form>
-        <div class="post-container-max">
-        </div>
-        <div class="posts-container" *ngFor="let p of posts">
-          <div class="firstname-lastname">
-
-            <div>{{ p?.firstName }}</div>
-            <div>{{ p?.lastName }}</div>
-          </div>
-          <div class="content-text-container">
-
-            <div>{{ p?.message }}</div>
-
-          </div>
-          <div class="delete-post-container">
-
-            <button (click)="deletePost(p?.id)">Usuń post</button>
-          </div>
-
-
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="background-right-site-container">
-    <div class="friends-container">
-      <div class="h3-friends-container">
-
-        <h3>Lista znajomych</h3>
-      </div>
-      <div class="friends-list-container">
-        <div class="person">
-          <ul>
-            <li>
-              <p>Norbert Gierczak</p>
-            </li>
-          </ul>
-          <div *ngIf="friendData">
-            <h2>{{ friendData.name }}</h2>
-            <p>{{ friendData.email }}</p>
-            <!-- Dodaj inne pola, takie jak zdjęcie znajomego itp. -->
-          </div>
-
-          <div *ngIf="!friendData">
-            <p>Brak danych znajomego.</p>
-          </div>
-          <!-- <form (ngSubmit)="addFriend(friendForm)" #friendForm="ngForm">
-            <input type="text" name="name" [(ngModel)]="friendData.name" placeholder="Imię znajomego" required>
-            <input type="email" name="email" [(ngModel)]="friendData.email" placeholder="Email znajomego" required>
-            <button type="submit">Dodaj znajomego</button>
-          </form> -->
-
-          <!-- <button (click)="addFriend()">Dodaj znajomego</button> -->
-
         </div>
       </div>
     </div>
-
-  </div>
-</main>
-
-
-
-
+    <div class="background-right-site-container">
+      <div class="friends-container">
+        <div class="h3-friends-container">
+          <h3>Lista znajomych</h3>
+        </div>
+        <div class="friends-list-container">
+          <div class="person">
+            <ul>
+              <li>
+                <p>Norbert Gierczak</p>
+              </li>
+            </ul>
+            <h3>Moje znajomi:</h3>
+            <ul>
+              <div *ngFor="let friend of friends">
+                <p>{{ friend.firstName }} {{ friend.lastName }}</p>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
-
-
-
-

@@ -7,12 +7,10 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class AddFriendService {
   constructor(private firestore: AngularFirestore) {}
 
-  addFriend(userId: string, friendName: string, friendEmail: string, friendLastName): Promise<void> {
+  addFriend(userId: string, friendName: string, friendLastName: string): Promise<void> {
     const friendData = {
       firstName: friendName,
       lastName: friendLastName,
-      email: friendEmail
-
     };
 
     const friendRef = this.firestore.collection(`users/${userId}/friends`).doc();
@@ -25,6 +23,5 @@ export class AddFriendService {
         throw error;
       });
   }
-
-
 }
+

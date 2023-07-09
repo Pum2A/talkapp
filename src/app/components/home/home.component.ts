@@ -4,9 +4,9 @@ import { Subscription } from 'rxjs';
 import { AuthService, UserData } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FriendDataService } from 'src/app/services/friend-data.service';
-import { AddFriendComponent } from '../add-friend/add-friend.component';
+import { FriendData, FriendDataService } from 'src/app/services/friend-data.service';
 import { AddFriendService } from 'src/app/services/add-friend.service';
+
 import { SearchFriendsService } from 'src/app/services/search-friend.service';
 
 @Component({
@@ -15,26 +15,20 @@ import { SearchFriendsService } from 'src/app/services/search-friend.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   isClicked = false;
-  deafultAvatar = 'https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png'
+  defaultAvatar = 'https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png';
   message: string;
-  posts: { avatar: string, firstName: string, lastName: string, message: string, id: string }[] = [];
+  posts: { avatar: string; firstName: string; lastName: string; message: string; id: string }[] = [];
   user: UserData;
   subs: Subscription[] = [];
-  friendData: { name: string, email: string, lastName: string } = { name: '', email: '', lastName: '' };
+  friendData: { name: string; lastName: string } = { name: '', lastName: '' };
+
+  friends: FriendData[] = [];
+  friendsSubscription: Subscription;
   searchQuery: string;
   searchResults: UserData[] = [];
   searchResultsFound = false;
   searchFormSubmitted = false;
-
-
-
-
-  firstName: string;
-  lastName: string;
-
-
 
 
   constructor(
@@ -44,38 +38,41 @@ export class HomeComponent implements OnInit, OnDestroy {
     private friendDataService: FriendDataService,
     private addFriendService: AddFriendService,
     private searchFriendsService: SearchFriendsService,
+
   ) {}
 
+  addFriend(result: UserData) {
+    result.addedToFriends = true;
+    if (this.friendData.name && this.friendData.lastName) {
+      const userId = this.user.id; // Zastąp to odpowiednim id użytkownika
+      const friendName = this.friendData.name;
+      const friendLastName = this.friendData.lastName;
+
+      const isFriendExist = this.searchResults.some(
+        (result) =>
+          result.firstName === friendName && result.lastName === friendLastName
+      );
+
+      if(isFriendExist){
+        console.log('ta osoba jest juz twoim znajomym')
+      } else {
 
 
-
-
-
-
-
-
-
-  addFriend(friend: UserData) {
-    if (friend && friend.id) {
-      const userId = ''; // Zastąp to odpowiednim id użytkownika
-      const friendId = friend.id;
-
-      this.addFriendService.addFriend(userId, friendId, this.lastName, this.firstName)
+        this.addFriendService
+        .addFriend(userId, friendName, friendLastName)
         .then(() => {
           console.log('Znajomy został pomyślnie dodany.');
           // Tutaj możesz wykonać inne działania po dodaniu znajomego, np. wyświetlić komunikat dla użytkownika
         })
-        .catch(error => {
+        .catch((error) => {
           console.error('Wystąpił błąd podczas dodawania znajomego:', error);
           // Tutaj możesz obsłużyć błąd, np. wyświetlić komunikat dla użytkownika informujący o niepowodzeniu
         });
+      }
+      } else {
+      console.error('Brak danych znajomego!');
     }
   }
-
-
-
-
-
 
   logout() {
     this.authService.Logout();
@@ -89,7 +86,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
 
     this.subs.push(
-      this.authService.CurrentUser().subscribe(user => {
+      this.authService.CurrentUser().subscribe((user) => {
         this.user = user;
       })
     );
@@ -97,11 +94,31 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.friendData = this.friendDataService.getFriendData();
 
 
+    this.friendData = { name: '', lastName: '' };
+
+    if (this.user && this.user.id) {
+      console.log('this.user.id:', this.user.id);
+
+      this.friendsSubscription = this.friendDataService
+        .getFriends(this.user.id)
+        .subscribe((friends: FriendData[]) => {
+          this.friends = friends;
+          console.log('this.friends:', this.friends); // Wypisanie danych znajomych w konsoli
+        });
+    }
+
+
+
 
   }
 
   ngOnDestroy(): void {
     this.subs.forEach((s) => s.unsubscribe());
+
+
+  if (this.friendsSubscription) {
+    this.friendsSubscription.unsubscribe();
+  }
   }
 
   isClickedProfile() {
@@ -112,16 +129,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   postMessage(form: NgForm) {
     if (this.user) {
       const { message } = form.value;
-      this.postService.postMessage(
-        message,
-        `${this.user.firstName} ${this.user.lastName}`,
-        {
-          avatar: this.user.avatar,
-          lastName: this.user.lastName,
-          firstName: this.user.firstName,
-          user_id: this.user.id
-        }
-      );
+      this.postService.postMessage(message, `${this.user.firstName} ${this.user.lastName}`, {
+        avatar: this.user.avatar,
+        lastName: this.user.lastName,
+        firstName: this.user.firstName,
+        user_id: this.user.id,
+      });
       form.resetForm();
     } else {
       console.error('Użytkownik nie jest zalogowany!');
@@ -140,7 +153,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       postDoc.ref.get().then((docSnapshot) => {
         const postData = docSnapshot.data() as { user_id: string }; // Asercja typów
         if (postData && postData.user_id === user_id) {
-          postDoc.delete()
+          postDoc
+            .delete()
             .then(() => {
               console.log('Post został pomyślnie usunięty!');
             })
@@ -161,19 +175,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       const firstName = form.value.firstName;
       const lastName = form.value.lastName;
 
-      this.searchFriendsService.searchFriends(firstName, lastName)
-        .subscribe(results => {
-          this.searchResults = results;
-          this.searchResultsFound = this.searchResults.length > 0;
-        });
+      this.searchFriendsService.searchFriends(firstName, lastName).subscribe((results) => {
+        this.searchResults = results;
+        this.searchResultsFound = this.searchResults.length > 0;
+
+      });
 
       this.searchFormSubmitted = true; // Ustawienie flagi wysłania formularza
     }
   }
-
-
-
 }
-
-
-
