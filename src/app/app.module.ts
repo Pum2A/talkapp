@@ -29,7 +29,8 @@ import { SearchFriendComponent } from './components/search-friend/search-friend.
     RegisterComponent,
     HomeComponent,
     AddFriendComponent,
-    SearchFriendComponent
+    SearchFriendComponent,
+    AddFriendComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,11 +11,11 @@ import firebase from 'firebase/compat/app';
   providedIn: 'root'
 })
 export class PostService {
-  CurrenUser!: User;
+  CurrentUser!: User;
 
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
 
-    this.afAuth.authState.subscribe(user => this.CurrenUser = user);
+    this.afAuth.authState.subscribe(user => this.CurrentUser = user);
 
    }
 
@@ -38,7 +38,7 @@ export class PostService {
     this.afs.collection('posts').add({
       message,
       title: ownerName,
-      user_id: this.CurrenUser.uid,
+      user_id: this.CurrentUser.uid,
       time: firebase.firestore.FieldValue.serverTimestamp(),
       ...otherItems
     }).then(res => console.log(res)).catch( err => console.log(err));

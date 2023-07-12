@@ -69,12 +69,14 @@
           <li *ngFor="let result of searchResults">
             {{ result.firstName }} {{ result.lastName }}
             <button
-              (click)="addFriend(result)"
-              [disabled]="result.addedToFriends"
-            >
-              Dodaj do znajomych
-            </button>
+  (click)="addFriend(result)"
+  [disabled]="result.addedToFriends"
+>
+  Dodaj do znajomych
+</button>
           </li>
+
+
         </ul>
       </div>
       <ng-template #noResults>
@@ -136,14 +138,15 @@
         <div class="friends-list-container">
           <div class="person">
             <ul>
-              <li>
-                <p>Norbert Gierczak</p>
+              <li *ngIf="user">
+                <p>{{ user.email }}</p>
               </li>
             </ul>
             <h3>Moje znajomi:</h3>
             <ul>
               <div *ngFor="let friend of friends">
                 <p>{{ friend.firstName }} {{ friend.lastName }}</p>
+                {{friends.length}}
               </div>
             </ul>
           </div>

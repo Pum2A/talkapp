@@ -42,7 +42,6 @@ export class AuthService {
   }
 
   SignUp(email: string, password: string, firstName: string, lastName: string, avatar: string): void {
-
     if (avatar === undefined || avatar === '') {
       avatar = this.defaultAvatar;
     }
@@ -57,9 +56,6 @@ export class AuthService {
             email,
             avatar,
             addedToFriends: false
-
-
-
           };
 
           this.afs.collection('users').doc(res.user.uid)
@@ -107,6 +103,13 @@ export class AuthService {
   searchUserInDatabase(user_id: string): Observable<UserData> {
     return this.afs.collection<UserData>('users').doc<UserData>(user_id).valueChanges();
   }
+
+  getCurrentUserId(): string | null {
+    if (this.currentUser) {
+      return this.currentUser.id;
+    }
+    return null;
+  }
 }
 
 export interface UserData {
@@ -116,5 +119,4 @@ export interface UserData {
   avatar: string;
   email: string;
   addedToFriends: boolean;
-
 }

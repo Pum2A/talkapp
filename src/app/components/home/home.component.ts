@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   user: UserData;
   subs: Subscription[] = [];
   friendData: { name: string; lastName: string } = { name: '', lastName: '' };
-
+  // friends = 10;
   friends: FriendData[] = [];
   friendsSubscription: Subscription;
   searchQuery: string;
@@ -42,35 +42,53 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   addFriend(result: UserData) {
-    result.addedToFriends = true;
     if (this.friendData.name && this.friendData.lastName) {
-      const userId = this.user.id; // Zastąp to odpowiednim id użytkownika
+      const userId = this.user.id;
       const friendName = this.friendData.name;
       const friendLastName = this.friendData.lastName;
 
-      const isFriendExist = this.searchResults.some(
-        (result) =>
-          result.firstName === friendName && result.lastName === friendLastName
+      const isFriendExist = this.friends.some(
+        (friend) => friend.firstName === friendName && friend.lastName === friendLastName
       );
 
-      if(isFriendExist){
-        console.log('ta osoba jest juz twoim znajomym')
-      } else {
+      if (isFriendExist) {
+        console.log('This person is already your friend.');
+        return;
+      }
 
+      const friendData: FriendData = {
+        id: result.id,
+        firstName: friendName,
+        lastName: friendLastName,
+        email: result.email,
+        avatar: result.avatar,
+        addedToFriends: true
+      };
 
-        this.addFriendService
+      this.addFriendService
         .addFriend(userId, friendName, friendLastName)
         .then(() => {
-          console.log('Znajomy został pomyślnie dodany.');
-          // Tutaj możesz wykonać inne działania po dodaniu znajomego, np. wyświetlić komunikat dla użytkownika
+          console.log('Friend successfully added.');
+          // Perform any additional actions after adding a friend
         })
         .catch((error) => {
-          console.error('Wystąpił błąd podczas dodawania znajomego:', error);
-          // Tutaj możesz obsłużyć błąd, np. wyświetlić komunikat dla użytkownika informujący o niepowodzeniu
+          console.error('Error adding friend:', error);
+          // Handle the error, display an error message, etc.
         });
-      }
-      } else {
-      console.error('Brak danych znajomego!');
+    } else {
+      console.error('Missing friend data!');
+    }
+  }
+
+
+  loadFriends(): void {
+    if (this.user && this.user.id) {
+      this.friendsSubscription = this.friendDataService
+        .getFriends(this.user.id)
+        .subscribe((friends: FriendData[]) => {
+          this.friends = friends;
+          console.log('Number of friends:', this.friends.length);
+        });
     }
   }
 
@@ -88,27 +106,28 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subs.push(
       this.authService.CurrentUser().subscribe((user) => {
         this.user = user;
+        this.loadFriends(); // Call a method to load friends or perform other actions dependent on the user data
       })
     );
 
-    this.friendData = this.friendDataService.getFriendData();
-
-
-    this.friendData = { name: '', lastName: '' };
-
     if (this.user && this.user.id) {
-      console.log('this.user.id:', this.user.id);
-
       this.friendsSubscription = this.friendDataService
         .getFriends(this.user.id)
+
         .subscribe((friends: FriendData[]) => {
           this.friends = friends;
-          console.log('this.friends:', this.friends); // Wypisanie danych znajomych w konsoli
+          console.log('Number of friends:', this.friends.length);
+
         });
     }
 
 
 
+          this.friendData = this.friendDataService.getFriendData();
+
+
+
+          this.friendData = { name: '', lastName: '' };
 
   }
 
