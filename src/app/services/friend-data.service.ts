@@ -35,6 +35,12 @@ export class FriendDataService {
       );
   }
 
+
+  removeFriend(userId: string, friendId: string): Promise<void> {
+    const friendRef = this.firestore.collection(`users/${userId}/friends`).doc(friendId);
+    return friendRef.delete();
+  }
+
 }
 
 export interface FriendData {

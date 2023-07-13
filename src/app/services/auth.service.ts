@@ -110,7 +110,28 @@ export class AuthService {
     }
     return null;
   }
+
+
+
+  deleteUser(): Promise<void> {
+    return this.afAuth.currentUser.then((user) => {
+      if (user) {
+        // Delete user from authentication
+        return user.delete().then(() => {
+          // Delete user data from Firestore
+          return this.afs.collection('users').doc(user.uid).delete();
+        });
+      } else {
+        return Promise.reject(new Error('No user currently logged in.'));
+      }
+    });
+  }
+
+
 }
+
+
+
 
 export interface UserData {
   id: string;

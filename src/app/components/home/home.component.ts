@@ -81,6 +81,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
 
+
+
+
   loadFriends(): void {
     if (this.user && this.user.id) {
       this.friendsSubscription = this.friendDataService
@@ -90,6 +93,37 @@ export class HomeComponent implements OnInit, OnDestroy {
           console.log('Number of friends:', this.friends.length);
         });
     }
+  }
+
+
+
+  removeFriend(friend: FriendData): void {
+    if (!this.user || !this.user.id) {
+      console.error('User is not logged in!');
+      return;
+    }
+
+    const userId = this.user.id; // The ID of the user whose friend list to update
+    const friendId = this.findFriendId(friend.firstName, friend.lastName); // Find the ID of the friend using firstName and lastName
+
+    if (!friendId) {
+      console.error('Friend ID not found!');
+      return;
+    }
+
+    this.friendDataService.removeFriend(userId, friendId)
+      .then(() => {
+        console.log('Friend successfully removed.');
+        // Perform any additional actions or update the UI
+      })
+      .catch((error) => {
+        console.error('Error removing friend:', error);
+      });
+  }
+
+  findFriendId(firstName: string, lastName: string): string | null {
+    const friend = this.friends.find(f => f.firstName === firstName && f.lastName === lastName);
+    return friend ? friend.id : null;
   }
 
   logout() {

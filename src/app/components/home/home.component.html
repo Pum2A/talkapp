@@ -27,11 +27,59 @@
     </div>
     <div class="main-site-container">
       <div class="input-container">
+          <form (submit)="searchFriends(searchForm)" #searchForm="ngForm">
+            <div>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="Imię"
+                [(ngModel)]="friendData.name"
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="Nazwisko"
+                [(ngModel)]="friendData.lastName"
+                required
+              />
+            </div>
+            <button type="submit">Wyszukaj</button>
+          </form>
+          <div class="results-container">
+
+            <div class="results" *ngIf="searchResultsFound; else noResults">
+              <div class="h3-container">
+
+                <h3>Wyniki wyszukiwania:</h3>
+              </div>
+              <ul>
+                <li *ngFor="let result of searchResults">
+                  {{ result.firstName }} {{ result.lastName }}
+                  <button
+                  (click)="addFriend(result)"
+                  [disabled]="result.addedToFriends"
+                  >
+                  Dodaj do znajomych
+                </button>
+                </li>
+
+
+            </ul>
+          </div>
+          <ng-template #noResults>
+            <p class="no-results">Nie znaleziono takiej osoby.</p>
+          </ng-template>
+        </div>
         <!-- <mat-icon class="search-icon">search</mat-icon> -->
-        <input type="text" placeholder="Szukaj" />
       </div>
     </div>
-    <div class="logout-container">
+      <div class="logout-container">
+
       <mat-icon>notifications</mat-icon>
       <span (click)="logout()" class="material-symbols-outlined"> logout </span>
     </div>
@@ -39,49 +87,7 @@
 
   <main>
     <div class="background-left-site-container">
-      <form (submit)="searchFriends(searchForm)" #searchForm="ngForm">
-        <div>
-          <label for="firstName">Imię:</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            [(ngModel)]="friendData.name"
-            required
-          />
-        </div>
-        <div>
-          <label for="lastName">Nazwisko:</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            [(ngModel)]="friendData.lastName"
-            required
-          />
-        </div>
-        <button type="submit">Wyszukaj</button>
-      </form>
 
-      <div *ngIf="searchResultsFound; else noResults">
-        <h3>Wyniki wyszukiwania:</h3>
-        <ul>
-          <li *ngFor="let result of searchResults">
-            {{ result.firstName }} {{ result.lastName }}
-            <button
-  (click)="addFriend(result)"
-  [disabled]="result.addedToFriends"
->
-  Dodaj do znajomych
-</button>
-          </li>
-
-
-        </ul>
-      </div>
-      <ng-template #noResults>
-        <p>Nie znaleziono takiej osoby.</p>
-      </ng-template>
     </div>
     <div class="background-main-text-container">
       <div class="main-background-text">
@@ -142,11 +148,11 @@
                 <p>{{ user.email }}</p>
               </li>
             </ul>
-            <h3>Moje znajomi:</h3>
+            <h3>Lista znajomych:</h3>
             <ul>
-              <div *ngFor="let friend of friends">
+              <div class="friend-list" *ngFor="let friend of friends">
                 <p>{{ friend.firstName }} {{ friend.lastName }}</p>
-                {{friends.length}}
+                <button (click)="removeFriend(friend)">Usuń znajomego</button>
               </div>
             </ul>
           </div>
