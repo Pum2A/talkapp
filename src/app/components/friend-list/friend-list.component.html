@@ -1,0 +1,82 @@
+<div class="background-main">
+  <div class="input-container">
+    <h2>Dodaj do znajomych!</h2>
+      <form (submit)="searchFriends(searchForm)" #searchForm="ngForm">
+        <div>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="Imię"
+            [(ngModel)]="friendData.name"
+            required
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="Nazwisko"
+            [(ngModel)]="friendData.lastName"
+            required
+          />
+        </div>
+        <div class="btn-container">
+
+          <button type="submit">Wyszukaj</button>
+        </div>
+      </form>
+      <div class="results-container">
+
+        <div class="results" *ngIf="searchResultsFound; else noResults">
+          <div class="h3-container">
+
+            <h3>Wyniki wyszukiwania:</h3>
+          </div>
+          <ul>
+            <li *ngFor="let result of searchResults">
+              <div class="user">
+
+                <p>
+
+                  {{ result.firstName }}
+                </p>
+
+
+                <p>
+
+                  {{ result.lastName }}
+                </p>
+              </div>
+              <button
+              (click)="addFriend(result)"
+              [disabled]="result.addedToFriends"
+              class="add-to-friend-btn"
+              >
+              Dodaj do znajomych
+            </button>
+            </li>
+
+
+        </ul>
+      </div>
+      <ng-template #noResults>
+        <p class="no-results">Nie znaleziono takiej osoby.</p>
+      </ng-template>
+    </div>
+    <!-- <mat-icon class="search-icon">search</mat-icon> -->
+    <button routerLink="">Powrót</button>
+  </div>
+<div class="friend-list-container">
+    <div class="friend-list" *ngFor="let friend of friends">
+      <p>{{ friend.firstName }} {{ friend.lastName }}</p>
+      <button (click)="removeFriend(friend)">Usuń znajomego</button>
+    </div>
+</div>
+
+
+
+
+
+</div>

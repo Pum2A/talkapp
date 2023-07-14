@@ -94,6 +94,10 @@ max-width: 100%;
     transition: .3s all;
   }
 
+  &:focus{
+    border-bottom: 3px solid crimson;
+  }
+
 }
 .left-site-container{
   min-width: 5rem;
@@ -218,7 +222,7 @@ height: 3rem;
 margin: 3rem;
 border-radius: 1rem;
 background: #101010;
-border: 1px solid #fff !important;
+border: 1px solid #444444 !important;
 outline: none;
 color: #fff;
 border: none;
@@ -228,7 +232,7 @@ border: none;
   width: 13rem;
   height: 3.3rem;
   outline: none;
-  border: 1px solid #fff;
+  border: 1px solid #444444;
   background-color: #101010;
   margin: 2rem 2rem;
   border-radius: 1rem;
@@ -365,8 +369,8 @@ line-height: normal;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 7rem;
-  height: 7rem;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
   background-color: #252525;
   cursor: pointer;
@@ -390,8 +394,25 @@ line-height: normal;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
 }
+
+.background-main-text-container h2{
+  font-weight: bold;
+  letter-spacing: .2rem;
+}
+.background-main-text-container .h2-container{
+  width: 30rem;
+  max-height: 6rem;
+  min-height: 6rem;
+  background-color: #181818;
+  border-bottom: 5px solid crimson;
+  cursor: pointer;
+  margin: 2rem 1rem;
+
+}
+
 .background-right-site-container{
 min-width: 20%;
 
@@ -410,6 +431,7 @@ main{
 height: 70rem;
   background-color: #252525;
   border-radius: 1rem;
+  border: 1px solid #444444;
 }
 form{
   display: flex;
@@ -463,13 +485,22 @@ margin: 15px;
   // margin-left: 6rem;
 }
 
-.delete-post-container button{
-min-width: 10rem;
-height: 3rem;
-background-color: #050505;
-outline: none;
-border: none;
-color: #fff;
+.delete-post-container mat-icon{
+  margin: 0;
+  padding: 0;
+  background-color: red;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: .5rem;
+  border: 1px solid #444444;
+  transition: 0.3s all;
+
+
+  &:hover{
+    background-color: rgba(255, 0, 0, 0.24);
+    transition: 0.3s all;
+  }
+
 cursor: pointer;
 }
 
@@ -484,22 +515,28 @@ cursor: pointer;
 
 .h3-friends-container{
   width: 100%;
-  height: 10rem;
+  max-height: 6rem;
+  min-height: 6rem;
   background-color: #181818;
-  border-bottom: 1px solid #444444;
+  border-bottom: 5px solid crimson;
+  cursor: pointer;
+  margin: 2rem 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .h3-friends-container h3{
   color: #fff;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: .2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   line-height: 0;
   margin: 0;
   padding: 20px;
-  background-color: #141414;
-  border-radius: 1rem;
-  border: 1px solid #444444;
 }
 
 .friends-container{
@@ -544,7 +581,8 @@ background-color: #121212;
 }
 
 .person h3{
-  color: crimson;
+  color: #fff;
+  font-size: 2.5rem;
 }
 
 .friend-list p{
@@ -552,13 +590,49 @@ background-color: #121212;
 }
 .friend-list{
   margin: 1rem 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap:2rem;
+}
+
+.green-done-icon{
+  background-color: lime !important;
+
+  &:hover{
+    background-color: rgba(0, 255, 0, 0);
+  }
+
+}
+
+.friend-list  mat-icon{
+  // width: 1 rem;
+  margin: 0rem .5rem;
+  padding: 0;
+  background-color: red;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: .5rem;
+  border: 1px solid #444444;
+  transition: 0.3s all;
+
+
+  &:hover{
+    background-color: rgba(255, 0, 0, 0.24);
+    transition: 0.3s all;
+  }
 }
 
 
-@media only screen and (min-width: 320px){
+@media only screen and (min-width: 320px) and (max-width: 1440px
+){
 .top{
   width: 100%;
   height: 6rem;
+}
+
+.friends-container{
+  display: none;
 }
 
 .main-background-text{
@@ -648,7 +722,7 @@ background-color: #121212;
 
   .input-container{
 
-    // display: none;
+    display: none;
   }
 
   .main-site-container{

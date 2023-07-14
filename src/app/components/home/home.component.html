@@ -12,16 +12,12 @@
       </div>
       <div class="profile-menu-container" *ngIf="isClicked">
         <div class="profile-menu">
-          <mat-icon>home</mat-icon>
+          <mat-icon routerLink="''">home</mat-icon>
           <p>Strona główna</p>
-          <mat-icon>settings</mat-icon>
-          <p>Ustawienia</p>
-          <mat-icon>comment</mat-icon>
-          <p>Skomentuj</p>
-          <mat-icon>message</mat-icon>
+          <mat-icon routerLink="friends">view_list</mat-icon>
+          <p>Znajomi</p>
+          <mat-icon routerLink="messages">message</mat-icon>
           <p>Wiadomości</p>
-          <mat-icon>add_circle</mat-icon>
-          <p>Dodaj artykuł</p>
         </div>
       </div>
     </div>
@@ -52,7 +48,7 @@
           </form>
           <div class="results-container">
 
-            <div class="results" *ngIf="searchResultsFound; else noResults">
+            <div class="results" *ngIf="searchResultsFound">
               <div class="h3-container">
 
                 <h3>Wyniki wyszukiwania:</h3>
@@ -71,9 +67,7 @@
 
             </ul>
           </div>
-          <ng-template #noResults>
-            <p class="no-results">Nie znaleziono takiej osoby.</p>
-          </ng-template>
+
         </div>
         <!-- <mat-icon class="search-icon">search</mat-icon> -->
       </div>
@@ -90,6 +84,10 @@
 
     </div>
     <div class="background-main-text-container">
+      <div class="h2-container">
+
+        <h2>Strona główna</h2>
+      </div>
       <div class="main-background-text">
         <div class="input-text-container">
           <div class="profile-circle"></div>
@@ -111,10 +109,11 @@
               </div>
               <div class="submit-container">
                 <input
-                  type="submit"
-                  placeholder="Wyślij"
-                  [(ngModel)]="message"
-                  class="submit-button-message"
+                type="submit"
+                placeholder="Wyślij"
+                [(ngModel)]="message"
+                class="submit-button-message"
+
                 />
               </div>
             </div>
@@ -130,7 +129,7 @@
               <div>{{ p?.message }}</div>
             </div>
             <div class="delete-post-container">
-              <button (click)="deletePost(p?.id)">Usuń post</button>
+              <mat-icon (click)="deletePost(p?.id)">delete_forever</mat-icon>
             </div>
           </div>
         </div>
@@ -139,20 +138,24 @@
     <div class="background-right-site-container">
       <div class="friends-container">
         <div class="h3-friends-container">
-          <h3>Lista znajomych</h3>
+          <h3>Kontakty</h3>
         </div>
         <div class="friends-list-container">
           <div class="person">
             <ul>
               <li *ngIf="user">
-                <p>{{ user.email }}</p>
+                <p>Teraz zalogowany jest:</p>
+                <p>{{ user.firstName }}</p>
+                <p>{{ user.lastName }}</p>
               </li>
             </ul>
             <h3>Lista znajomych:</h3>
             <ul>
               <div class="friend-list" *ngFor="let friend of friends">
                 <p>{{ friend.firstName }} {{ friend.lastName }}</p>
-                <button (click)="removeFriend(friend)">Usuń znajomego</button>
+                <div (click)="removeFriend(friend)">
+                  <mat-icon>delete_forever</mat-icon>
+                </div>
               </div>
             </ul>
           </div>

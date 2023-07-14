@@ -20,6 +20,9 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { AddFriendComponent } from './components/add-friend/add-friend.component';
 import { SearchFriendComponent } from './components/search-friend/search-friend.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { FriendListComponent } from './components/friend-list/friend-list.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 
 @NgModule({
@@ -31,6 +34,9 @@ import { SearchFriendComponent } from './components/search-friend/search-friend.
     AddFriendComponent,
     SearchFriendComponent,
     AddFriendComponent,
+    SettingsComponent,
+    FriendListComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,

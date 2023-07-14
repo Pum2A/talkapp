@@ -1,0 +1,94 @@
+.background-main{
+  background-color: #121212;
+  height: 100%;
+  max-width: 100%;
+    min-width: 100%;
+  }
+
+  .friend-list p {
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  h2{
+    color: #fff;
+    margin: 2rem 2rem;
+  }
+  h3{
+    color: #fff;
+  }
+
+  .results ul li {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .friend-list button{
+    margin: 1rem 0rem;
+    width: 20rem;
+    height: 3rem;
+    border-radius: 1rem;
+    border: 1px solid #fff;
+    background-color: #121212;
+    color: red;
+    cursor: pointer;
+  }
+  .btn-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .user{
+    display: flex;
+    gap: .5rem;
+  }
+
+  .user p{
+    color: #fff;
+  }
+
+  .input-container{
+  max-width: 100%;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .input-container button{
+    width: 12em;
+    margin: 1rem 0rem;
+    height: 3rem;
+    border-radius: 1rem;
+    border: 1px solid #fff;
+    background-color: #121212;
+    color: #fff;
+  }
+  .add-to-friend-btn{
+    color: green !important;
+    cursor: pointer;
+  }
+  .input-container input{
+    margin: 1rem 1rem;
+    width: 20rem;
+    height: 3rem;
+    border-radius: 1rem;
+    border: 1px solid #fff;
+    background-color: #121212;
+    color: #fff;
+
+  }
+  .input-container input::placeholder{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color: #fff;
+
+  }
+
+.friend-list-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
